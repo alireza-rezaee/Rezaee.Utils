@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Rezaee.Utils
 {
-    public static class Numbers
+    public static class Globalization
     {
         public static string TranslateDigits(this int num, CultureInfo to)
             => num.ToString().TranslateDigits(to, from: new CultureInfo("en-US"));
@@ -32,6 +32,21 @@ namespace Rezaee.Utils
                 .ToDictionary(x => x.Key, x => x.Value);
 
             return content.TransferUnicodes(transferDict);
+        }
+
+        public static string TransferUnicodes(this string content, Dictionary<string, string> dict)
+        {
+            if (string.IsNullOrEmpty(content))
+                return content;
+
+            IEnumerable<string> toTranslates = content.Distinct()
+                .Select(@char => @char.ToString())
+                .Where(@char => dict.Keys.Contains(@char));
+
+            foreach (string toTranslate in toTranslates)
+                content = content.Replace(toTranslate, dict[toTranslate]);
+
+            return content;
         }
     }
 }
