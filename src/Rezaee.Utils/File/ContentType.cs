@@ -2,9 +2,9 @@
 using HeyRed.Mime;
 using MimeTypes;
 
-namespace Rezaee.Utils
+namespace Rezaee.Utils.File
 {
-    public static class FileContentType
+    public static class ContentType
     {
         public static string GetExtension(string mimeType)
             => MimeTypeMap.GetExtension(mimeType);
