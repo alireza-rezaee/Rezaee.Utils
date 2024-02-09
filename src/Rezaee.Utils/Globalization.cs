@@ -1,5 +1,4 @@
-﻿using Rezaee.Utils.Helpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -12,9 +11,9 @@ namespace Rezaee.Utils
 
         public static string TranslateDigits(this string content, CultureInfo to, CultureInfo from)
         {
-            ArgumentNullExceptionHelper.ThrowIfNull(nameof(content));
-            ArgumentNullExceptionHelper.ThrowIfNull(nameof(to));
-            ArgumentNullExceptionHelper.ThrowIfNull(nameof(from));
+            Assertions.ThrowIfNull(content, nameof(content));
+            Assertions.ThrowIfNull(to, nameof(to));
+            Assertions.ThrowIfNull(from, nameof(from));
 
             if ((content?.Trim() == string.Empty) || (to == from))
                 return content;
